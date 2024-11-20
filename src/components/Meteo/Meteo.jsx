@@ -6,30 +6,39 @@ export function Meteo()
     const [data, setData] = useState([]);
     useEffect(() => {
         const fetchWeather = async () => {
-            try{
-                // Récupère un objet city 
+            try{ 
                 const res = await axios.get(
                     'https://api.meteo-concept.com/api/location/cities',
                     {
                         params: {
-                        token: 'd9c5d2afc445a103f8dbf3e847896c5514b01931b30f0cd9beb9de78c4a0c02c',
+                        token: 'c7b2f341dd0f28256e0b32278ad71f1e1b1f40e9d8126f625ce9ee193011b9e4', // Mettre le token en variable d'environnement pour plus de sécurité ?
                         search: 'Paris',
                         },
                     }
                 );
-                console.log(res);
-                setData(res.data);
+                console.log(res.data);
+                setData(res.data.cities);
             }catch(err)
             {
                 console.log(err);
             };
         }
-            fetchWeather()
+            fetchWeather();
+            
     }, [])
-
+    console.log(data);
     return(
         <>
-            <h2>{data.name}</h2>
+            <h1>Résultat de la recherche</h1>
+            <ul>
+                {/*
+                    Affichage du contenu de la requête
+                    Utilisation de .map() au lieu de foreach() dans un return, le foreach exécutant seulement des actions et ne retournant rien
+                */ }
+            { data.map(
+                (city) => <li key={city.insee}>{city.name}</li>
+            )} 
+            </ul>
         </>
 
     )
