@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 export function Meteo()
@@ -36,7 +37,7 @@ export function Meteo()
                     Utilisation de .map() au lieu de foreach() dans un return, le foreach exécutant seulement des actions et ne retournant rien
                 */ }
             { data.map(
-                (city) => <li key={city.insee}>{city.name}</li>
+                (city) => <Link to={`/details/${city.insee}`} ><li key={city.insee}>{city.name}</li> </Link> 
             )} 
             </ul>
         </>
