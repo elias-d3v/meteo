@@ -10,9 +10,11 @@ export function Details() {
     const fetchWeather = async () => {
       try {
         const res = await axios.get(
+            // Appel API avec le code insee récupéré avec useParams()
           `https://api.meteo-concept.com/api/forecast/daily?token=c7b2f341dd0f28256e0b32278ad71f1e1b1f40e9d8126f625ce9ee193011b9e4&insee=${insee}`
         );
         console.log(res);
+        // res.data contient à la fois l'élément city ainsi que les 14 éléments prévisions (forecast)
         setData(res.data);
         setLoading(false);
       } catch (err) {
@@ -22,6 +24,7 @@ export function Details() {
     };
     fetchWeather();
   }, [insee]);
+  // Page de chargement afin de charger les données de la requête avant l'affichage final de la page
   if (!data) {
     return <p>Chargement des informations ...</p>;
   }
