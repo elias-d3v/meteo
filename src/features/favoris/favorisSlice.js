@@ -10,7 +10,7 @@ const saveToLocalStorage = (favoris) => {
 const loadFromLocalStorage = () => {
     const listFavoris = localStorage.getItem('favoris');
     // On vérifie que l'item favoris existe bien dans le localStorage, sinon on initialise un tableau vide
-    return listFavoris ? localStorage.getItem('favoris') : [];
+    return listFavoris ? JSON.parse(listFavoris) : [];
 }
 
 export const favorisSlice = createSlice({
@@ -23,7 +23,7 @@ export const favorisSlice = createSlice({
         // ajout d'une ville en favoris
         // action.payload représentant l'élément ajouté
         addFav: (state, action) => {
-            state.value.push(action.payload);
+            state.favoris.push(action.payload);
             // On sauvegarde les valeurs dans le localStorage
             saveToLocalStorage(state.favoris);
             console.log("élément correctement ajouté au localStorage");
