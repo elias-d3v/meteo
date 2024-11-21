@@ -41,17 +41,13 @@ export function Meteo() {
   return (
     <Container className='mt-4'>
       {/*
-      onSearch est une props qui est passée au component SearchForm et sera appellée lors de la soumission du formulaire par l'utilisateur
-                */}
+      onSearch est une props qui est passée au component SearchForm et sera appellée lors de la soumission du formulaire par l'utilisateur et récupère l'input soumis */}
       <SearchForm onSearch={handleSearch} />
       <Row justify-content-center>
         <Col>
       <h1>Résultat de la recherche</h1>
       <ListGroup>
-        {/*
-                        Affichage du contenu de la requête
-                        Utilisation de .map() au lieu de foreach() dans un return, le foreach exécutant seulement des actions et ne retournant rien
-                    */}
+        {/*Affichage du contenu de la requête. Utilisation de .map() au lieu de foreach() dans un return, le foreach exécutant seulement des actions et ne retournant rien. */}
         {data.map((city) => (
           <Link to={`/details/${city.insee}`}>
             <ListGroup.Item key={city.insee} >{city.name}</ListGroup.Item>{" "}

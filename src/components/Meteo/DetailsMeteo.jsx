@@ -39,6 +39,7 @@ export function Details() {
         Prévisions des 14 prochains jours pour la ville de {data.city.name}
       </h2>
       <ul>
+        {/* L'élément forecast contient les prévisions des 14 prochains jours */}
         {data.forecast.map((day) => (
           <li>
             Date : {day.datetime} <br></br> Probabilité de pluie :{" "}
