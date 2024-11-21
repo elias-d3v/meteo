@@ -33,6 +33,7 @@ export const favorisSlice = createSlice({
             state.favoris = state.favoris.filter(fav => fav !== action.payload);
             // On charge le nouveau tableau de favoris dans le localStorage
             saveToLocalStorage(state.favoris);
+            console.log("élément correctement supprimé des favoris")
         }
     }
 });

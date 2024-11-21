@@ -57,8 +57,8 @@ export function Meteo() {
           <Link to={`/details/${city.insee}`}>
             <ListGroup.Item key={city.insee} >{city.name}, Code Postal : {city.cp} </ListGroup.Item>{" "}
           </Link>
-
-            <button key={city.insee} onClick={() => dispatch(addFav(city.insee))}>Favoris</button>
+          {/* Ajout de l'objet city en favoris afin d'accéder à ses différents paramètres en temps voulu (code insee, cp, nom de la ville etc) */}
+            <button key={city.insee} onClick={() => dispatch(addFav(city))}>Favoris</button>
 
           </div>
         ))}

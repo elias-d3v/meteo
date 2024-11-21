@@ -17,7 +17,7 @@ export function Navbar(){
                         <Link class="nav-link" to="meteo">Consulter la météo</Link>
                     </li>
                     <li class="nav-item">
-                        <Link class="nav-link" to="search">Recherche</Link>
+                        <Link class="nav-link" to="fav">Favoris</Link>
                     </li>
                     </ul>
                 </div>
