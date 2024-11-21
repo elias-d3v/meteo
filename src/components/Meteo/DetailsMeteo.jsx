@@ -26,6 +26,7 @@ export function Details() {
     };
     fetchWeather();
   }, [insee]);
+
   // Page de chargement afin de charger les données de la requête avant l'affichage final de la page
   if (!data) {
     return <p>Chargement des informations ...</p>;

@@ -4,11 +4,15 @@ import { Navbar } from "./components/Navbar/Navbar"
 import { Meteo } from "./components/Meteo/Meteo"
 import { Details } from "./components/Meteo/DetailsMeteo"
 import { SearchForm } from "./components/SearchForm/SearchForm"
+import { Provider } from "react-redux"
+import { store } from "./app/store"
 
 
 function App() {
 
   return (
+    <Provider store={store}>
+
     <BrowserRouter>
       <Navbar />
       <Routes>
@@ -19,6 +23,8 @@ function App() {
         <Route path="/search" Component={SearchForm} />
       </Routes>
     </BrowserRouter>
+
+     </Provider>
   )
 }
 
