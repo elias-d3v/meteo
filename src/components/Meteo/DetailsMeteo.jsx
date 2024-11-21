@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import ListGroup from 'react-bootstrap/ListGroup';
+import {  Container, Row, Col } from 'react-bootstrap';
 
 export function Details() {
   const [data, setData] = useState(null);
-  const { loading, setLoading } = useState(true);
+  const [loading, setLoading]  = useState(true);
   const { insee } = useParams();
   useEffect(() => {
     const fetchWeather = async () => {
@@ -30,7 +32,9 @@ export function Details() {
   }
 
   return (
-    <>
+    <Container className='mt-4'>
+        <Row className="justify-content-center">
+        <Col md={8} lg={6}>
       <h2>
         Prévisions des 14 prochains jours pour la ville de {data.city.name}
       </h2>
@@ -42,6 +46,10 @@ export function Details() {
           </li>
         ))}
       </ul>
-    </>
+        </Col>
+
+
+        </Row>
+    </Container>
   );
 }
