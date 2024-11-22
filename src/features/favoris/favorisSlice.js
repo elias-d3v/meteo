@@ -29,10 +29,11 @@ export const favorisSlice = createSlice({
             console.log("élément correctement ajouté au localStorage");
         },
         // Retire l'élément sélectionné du tableau des favoris
-        removeFav: (state, action) => {
-            state.favoris = state.favoris.filter(fav => fav !== action.payload);
+        removeFav: (state, action) => {    
+            const updatedFavoris = state.favoris.filter(fav => fav.insee !== action.payload.insee);
+            state.favoris = updatedFavoris;
             // On charge le nouveau tableau de favoris dans le localStorage
-            saveToLocalStorage(state.favoris);
+            saveToLocalStorage(updatedFavoris);
             console.log("élément correctement supprimé des favoris")
         }
     }

@@ -24,7 +24,8 @@ export function ListeFav() {
               {/* Lien renvoyant aux prévisions des 14 prochains jours */}
               <Link to={`/details/${fav.insee}`}>{fav.name} {" CP : "} {fav.cp}</Link>{" "}
               {/* Bouton de suppression des favoris */}
-              <Button className="bg-danger" onClick={() => dispatch(removeFav(fav))}>X</Button>
+              <Button className="bg-danger" type="button" onClick={() => {console.log('ok'); dispatch(removeFav(fav))}}>X</Button>
+              {/* <button onClick={() => {console.log('ok'); dispatch(removeFav(fav))}}>X</button>   */}
             </li>
           </div>
         ))}
