@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import ListGroup from 'react-bootstrap/ListGroup';
-import {  Container, Row, Col } from 'react-bootstrap';
+import {  Container, Row, Col, Card } from 'react-bootstrap';
 
 export function Details() {
   const [data, setData] = useState(null);
@@ -26,31 +26,37 @@ export function Details() {
     };
     fetchWeather();
   }, [insee]);
+
   // Page de chargement afin de charger les données de la requête avant l'affichage final de la page
   if (!data) {
     return <p>Chargement des informations ...</p>;
   }
 
   return (
-    <Container className='mt-4'>
-        <Row className="justify-content-center">
-        <Col md={8} lg={6}>
-      <h2>
-        Prévisions des 14 prochains jours pour la ville de {data.city.name}
-      </h2>
-      <ul>
-        {/* L'élément forecast contient les prévisions des 14 prochains jours */}
-        {data.forecast.map((day) => (
-          <li>
-            Date : {day.datetime} <br></br> Probabilité de pluie :{" "}
-            {day.probarain}% <br></br>Température Minimale attendue : {day.tmin}C° <br></br>Température Maximale attendue : {day.tmax}C°
-          </li>
-        ))}
-      </ul>
+    <Container className="mt-4">
+      <Row className="justify-content-center">
+        <Col md={8} lg={6} className="text-center">
+          <h2>
+            Prévisions des 14 prochains jours pour la ville de {data.city.name}
+          </h2>
         </Col>
-
-
-        </Row>
+      </Row>
+      <Row className="mt-3">
+        {data.forecast.map((day, index) => (
+          <Col md={6} lg={4} key={index} className="mb-4">
+            <Card>
+              <Card.Body>
+                <Card.Title>Date : {day.datetime}</Card.Title>
+                <Card.Text>
+                  <strong>Probabilité de pluie :</strong> {day.probarain}% <br />
+                  <strong>Température Minimale :</strong> {day.tmin}°C <br />
+                  <strong>Température Maximale :</strong> {day.tmax}°C
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
     </Container>
   );
 }

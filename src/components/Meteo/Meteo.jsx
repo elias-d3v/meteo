@@ -3,12 +3,16 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { SearchForm } from "../SearchForm/SearchForm";
 import ListGroup from 'react-bootstrap/ListGroup';
-import {  Container, Row, Col } from 'react-bootstrap';
+import {  Container, Row, Col, Button } from 'react-bootstrap';
+import { addFav, removeFav } from "../../features/favoris/favorisSlice";
+import { useDispatch } from "react-redux";
 
 export function Meteo() {
   const [data, setData] = useState([]);
   // variable qui changera en fonction de l'entrée utilisateur. Paris par défaut pour éviter les erreurs au chargement de la page
   const [ville, setVille] = useState("Paris");
+  // Hook useDispatch pour
+  const dispatch = useDispatch();
   useEffect(() => {
     const fetchWeather = async () => {
       try {
@@ -49,9 +53,14 @@ export function Meteo() {
       <ListGroup>
         {/*Affichage du contenu de la requête. Utilisation de .map() au lieu de foreach() dans un return, le foreach exécutant seulement des actions et ne retournant rien. */}
         {data.map((city) => (
+            <div>
           <Link to={`/details/${city.insee}`}>
-            <ListGroup.Item key={city.insee} >{city.name}</ListGroup.Item>{" "}
+            <ListGroup.Item key={city.insee} >{city.name}, Code Postal : {city.cp} </ListGroup.Item>{" "}
           </Link>
+          {/* Ajout de l'objet city en favoris afin d'accéder à ses différents paramètres en temps voulu (code insee, cp, nom de la ville etc) */}
+            <Button key={city.insee} onClick={() => dispatch(addFav(city))}>Favoris</Button>
+
+          </div>
         ))}
       </ListGroup>
         </Col>
