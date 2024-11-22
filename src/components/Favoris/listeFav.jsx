@@ -1,7 +1,8 @@
-import { addFav, removeFav } from "../../features/favoris/favorisSlice";
+import { removeFav } from "../../features/favoris/favorisSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 export function ListeFav() {
   // Hook permettant le suivi de l'état global favoris
@@ -14,8 +15,8 @@ export function ListeFav() {
 
   return (
     <>
-      <h2>Liste des favoris</h2>
-      <ul>
+      <h2 className="text-center">Liste des favoris</h2>
+      <ul className="text-center">
         {/* favoris étant un objet contenant un tableau on itère sur favoris.favoris */}
         {favoris.favoris.map((fav) => (
           <div key={fav}>
@@ -23,7 +24,7 @@ export function ListeFav() {
               {/* Lien renvoyant aux prévisions des 14 prochains jours */}
               <Link to={`/details/${fav.insee}`}>{fav.name} {" CP : "} {fav.cp}</Link>{" "}
               {/* Bouton de suppression des favoris */}
-              <button onClick={() => dispatch(removeFav(fav))}>X</button>
+              <Button className="bg-danger" onClick={() => dispatch(removeFav(fav))}>X</Button>
             </li>
           </div>
         ))}

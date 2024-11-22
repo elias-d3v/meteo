@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { SearchForm } from "../SearchForm/SearchForm";
 import ListGroup from 'react-bootstrap/ListGroup';
-import {  Container, Row, Col } from 'react-bootstrap';
+import {  Container, Row, Col, Button } from 'react-bootstrap';
 import { addFav, removeFav } from "../../features/favoris/favorisSlice";
 import { useDispatch } from "react-redux";
 
@@ -58,7 +58,7 @@ export function Meteo() {
             <ListGroup.Item key={city.insee} >{city.name}, Code Postal : {city.cp} </ListGroup.Item>{" "}
           </Link>
           {/* Ajout de l'objet city en favoris afin d'accéder à ses différents paramètres en temps voulu (code insee, cp, nom de la ville etc) */}
-            <button key={city.insee} onClick={() => dispatch(addFav(city))}>Favoris</button>
+            <Button key={city.insee} onClick={() => dispatch(addFav(city))}>Favoris</Button>
 
           </div>
         ))}
